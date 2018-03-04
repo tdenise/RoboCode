@@ -32,15 +32,16 @@ public class LED extends Robot
 		moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
 		check = false;
 		
-		// turnLeft to face a wall.
-		// getHeading() % 90 means the remainder of
-		// getHeading() divided by 90.
+		//divorce gun movement from body
+		setAdjustGunForRobotTurn(true);
+		
+		// turnLeft to face a wall
 		turnLeft(getHeading() % 90);
 		ahead(moveAmount);
 		// Turn the gun to turn right 90 degrees.
 		check = true;
 		turnGunRight(90);
-		turnRight(90);
+		
 		
 		while (true) {
 			// Look before we turn when ahead() completes.
@@ -65,40 +66,40 @@ public class LED extends Robot
 		double absoluteBearing = getHeading() + e.getBearing();
 		double bearingFromGun = normalRelativeAngleDegrees(absoluteBearing - getGunHeading());
 		
-			if (Math.abs(bearingFromGun) <= 3) {
-				turnGunRight(bearingFromGun);
-				// We check gun heat 
-				if (getGunHeat() == 0) {
-					fire(Math.min(3 - Math.abs(bearingFromGun), getEnergy() - .1));
+				if (Math.abs(bearingFromGun) <= 3) {
+					turnGunRight(bearingFromGun);
+					// We check gun heat in order to not lose robot
+					if (getGunHeat() == 0) {
+						fire(Math.min(3 - Math.abs(bearingFromGun), getEnergy() - .1));
+					}
+				} // otherwise just set the gun to turn.
+				else {
+					turnGunRight(bearingFromGun);
 				}
-			} // otherwise just set the gun to turn.
-			// Note:  This will have no effect until we call scan()
-			else {
-				turnGunRight(bearingFromGun);
-			}
-			
-			if(bearingFromGun == 0) { 
-				scan();
-			}
+				
+				if(bearingFromGun == 0) { 
+					scan();
+				}
 	}
 	
-
-
 	public void onHitByBullet(HitByBulletEvent e) {
-		moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
-		if(e.getBearing() > -90 && e.getBearing() < 90) {
-			ahead(moveAmount);
-		}
+		turnRight(90 - e.getBearing());
+		ahead(100);
+	}
 	
-	}	
+/*	public onHitWall(){
+		
+	}*/
+
 
 	//move back a bit if robo in front of us
 	public void onHitRobot(HitRobotEvent e) {
+		moveAmount = Math.max(getBattleFieldWidth(), getBattleFieldHeight());
 		if(e.getBearing() > -90 && e.getBearing() < 90) {
-			back(100);
+			back(moveAmount);
 		}
 		else{
-			ahead(100);
+			ahead(moveAmount);
 		}
 	}
 		
