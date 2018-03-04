@@ -33,6 +33,8 @@ public class LED extends Robot
 		check = false;
 		
 		// turnLeft to face a wall.
+		// getHeading() % 90 means the remainder of
+		// getHeading() divided by 90.
 		turnLeft(getHeading() % 90);
 		ahead(moveAmount);
 		// Turn the gun to turn right 90 degrees.
@@ -48,7 +50,12 @@ public class LED extends Robot
 			// Don't look now
 			check = false;
 			turnRight(90);
+			ahead(100); // Move ahead 100
+			turnGunRight(360); // Spin gun around
+			back(100); // Move back 100
+			turnGunRight(360); // Spin gun around
 		}
+
 	}		
 
 	/**
@@ -57,7 +64,7 @@ public class LED extends Robot
 	public void onScannedRobot(ScannedRobotEvent e) {
 		double absoluteBearing = getHeading() + e.getBearing();
 		double bearingFromGun = normalRelativeAngleDegrees(absoluteBearing - getGunHeading());
-		if(check){
+		
 			if (Math.abs(bearingFromGun) <= 3) {
 				turnGunRight(bearingFromGun);
 				// We check gun heat 
@@ -73,7 +80,6 @@ public class LED extends Robot
 			if(bearingFromGun == 0) { 
 				scan();
 			}
-		}
 	}
 	
 
