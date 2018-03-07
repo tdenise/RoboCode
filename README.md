@@ -3,15 +3,15 @@ Actual Features:
   After trying to implement many of the abilities that we had planned the code started to conflict with each other, so we tried to keep the code as simple as possible in order to avoid conflict between the code. We wanted to implement something similar to the sample Walls robot, a robot that is simple and effective.
 
 -Divorces gun movement from body.
- <pre></pre>We wanted to create a robot that has gun movements that was independent from its body because we started to differentiate from the plan to make the robot hug the wall. Since the robot is no longer hugging the walls it now has the chance to jump into the middle of the battlefield which will increase its chances of being surrounded by robots from all sides so if the robot has independent gun movements from its body it will be able to shoot the closest robot from all around. The idea to not make the robot hug the wall was made in order to not make our robot identical to the Walls robot, we wanted to retain some originality.
+&emsp; We wanted to create a robot that has gun movements that was independent from its body because we started to differentiate from the plan to make the robot hug the wall. Since the robot is no longer hugging the walls it now has the chance to jump into the middle of the battlefield which will increase its chances of being surrounded by robots from all sides so if the robot has independent gun movements from its body it will be able to shoot the closest robot from all around. The idea to not make the robot hug the wall was made in order to not make our robot identical to the Walls robot, we wanted to retain some originality.
 -Every time it gets hit moves away to avoid another bullet by turning and moving ahead by a specified amount. 
-   <pre></pre>This ability is used in the hopes of avoiding the path of the enemy robot’s bullets.
+  &emsp; This ability is used in the hopes of avoiding the path of the enemy robot’s bullets.
 -If a robot is in front of us then move back otherwise move ahead to avoid it.
-  <pre></pre> This ability will make it less likely to hit the enemy robot again. Points are taken off for ramming an opponent. 
+  &emsp;This ability will make it less likely to hit the enemy robot again. Points are taken off for ramming an opponent. 
 -Tracks opponent and tries to kill it off before moving. Check gunheat in order to not lose robot because every shot takes up a turn.
-   <pre></pre>The only problem with this ability is that the robot has to stand still in order to implement this ability. Especially since the robot is more than likely to be in the middle of the battlefield it has the chance to be hit more often and be killed before it can kill off another robot. The robot also checks its gunheat before shooting in order to not lose track of its enemy so that it doesn’t lose it.
+ &emsp; The only problem with this ability is that the robot has to stand still in order to implement this ability. Especially since the robot is more than likely to be in the middle of the battlefield it has the chance to be hit more often and be killed before it can kill off another robot. The robot also checks its gunheat before shooting in order to not lose track of its enemy so that it doesn’t lose it.
 -Rapid Fire
-  <pre></pre> The robot shoots rapidly. However the issue with this is that it shoots and misses if the robot is constantly moving. This could be improved by implementing a predictive shooting ability in an advanced robot. Since multiple abilities can be implemented per turn for an advanced robot it would have been to have started with that. 
+ &emsp; The robot shoots rapidly. However the issue with this is that it shoots and misses if the robot is constantly moving. This could be improved by implementing a predictive shooting ability in an advanced robot. Since multiple abilities can be implemented per turn for an advanced robot it would have been to have started with that. 
 
 Desired Features:
 -Hugs the wall.
